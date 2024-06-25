@@ -18,16 +18,18 @@ afterEach(() => {
 
 test('test that App component renders', () => {
   render(<App />, container);
- });
-
-test('test that new-item-button is a button', () => {
-  render(<App/>, container);
-  const element = screen.getByTestId('new-item-button');
-  expect(element.innerHTML.toLowerCase().includes("button")).toBe(true)
 });
 
-test('test that new-item-input is an input ', () => {
-  render(<App/>, container);
-  const element = screen.getByTestId('new-item-input');
-  expect(element.innerHTML.toLowerCase().includes("input")).toBe(true)
+test('test that new-item-button is a button', () => {
+  render(<App />, container);
+  const element = screen.getByTestId('new-item-button');
+  expect(element.tagName).toBe('BUTTON');  
+});
+
+test('test that new-item-input contains an input element', () => {
+  render(<App />, container);
+  const inputContainer = screen.getByTestId('new-item-input');
+  const inputElement = inputContainer.querySelector('input');
+  expect(inputElement).not.toBeNull();
+  expect(inputElement.tagName).toBe('INPUT');
 });
